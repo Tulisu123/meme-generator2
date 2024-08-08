@@ -102,6 +102,8 @@ function markSelectedLine(line) {
 
     gCtx.font = `${fontSize}px ${line.font}`;
 
+    gCtx.font = `${fontSize}px ${line.font}`;
+    
     const textWidth = gCtx.measureText(txt).width;
    
     const paddingX = 10;
