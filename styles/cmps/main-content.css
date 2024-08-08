@@ -1,0 +1,173 @@
+*{
+    box-sizing: border-box;
+}
+/*Gallery*/
+
+.gallery{
+    margin-top: 80px;
+}
+.gallery-container{
+    padding-top: 3%;
+    grid-column: 1/-1;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap:1em;
+    margin-bottom: 100px;
+}
+.gallery input{
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 5px;
+    border: 1px solid black;
+    font-size: 20px;
+}
+@media (min-width: 780px) {
+     .gallery-container {
+        padding-bottom: 3%;
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1em;
+    }
+}
+
+ .gallery-container img{
+    justify-self: center;
+    width:200px;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+ .gallery-container img:hover{
+    scale: 1.05;
+}
+
+
+/*Edit-view*/
+/*Canvas*/
+.edit-meme{
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+}
+.edit-view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.edit-view .canvas-container{
+    height: 60%;
+}
+
+.edit-view .actions{
+    background-color: beige;
+    display: grid;
+    border: 2px solid black;
+    border-radius: 10px;
+    grid-column: 2;
+    justify-items: center;
+    align-items: center;
+    padding-bottom: 30px;
+} 
+
+.edit-view canvas{
+    border: 2px solid black;
+}
+
+.edit-view .actions .row-one-container input{
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    display: block;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid black;
+    font-size: 22px;
+}
+
+.edit-view .actions .row-three-point-five{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+} 
+
+.edit-view .actions .row-three-point-five select{
+  border: 0;
+  outline: 0;
+  width: 10rem;
+  padding: 0.4rem;
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.edit-view .actions .color-input{
+    width: 0;
+    height: 0;
+}
+
+
+
+@media (min-width: 780px) {
+    body{
+        /* background-color: red; */
+    }
+    .edit-meme{
+        margin-top: 70px;
+        width: 100%;
+        height: 100%;
+    }
+    .edit-view{
+        width: 100%;
+        height: 100%;
+
+        display: grid;
+        padding: 1%;
+        grid-column: 1/-1;
+        grid-template-columns: 70% minmax(300px,50%);
+
+    }
+
+    .edit-view .canvas-container {
+        justify-self: start;
+        align-self: start;
+        grid-column: 1;
+        width: 400px;
+        height: 400px;
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    .edit-view .actions{
+        align-self: center;
+        justify-self: center;
+        grid-column: 2;
+        background-color: beige;
+
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        justify-self: center;
+
+        padding-bottom: 30px;
+        height: 80%;
+        border: 2px solid black;
+        border-radius: 10px;
+        
+    }
+}
+
+@media (min-width:1100px){
+    .edit-view .canvas-container {
+        justify-self: center;
+        align-self: start;
+        grid-column: 1;
+        width: 600px;
+        height: 600px;
+    }
+    .edit-view{
+        grid-template-columns: 50% minmax(300px,50%);
+    }
+}

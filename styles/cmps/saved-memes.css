@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+}
+
+.saved-memes-container {
+    margin-top: 100px;
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.saved-memes-container img {
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    cursor: pointer;
+    width: 230px;
+    height: 230px;
+}
+
+.saved-memes-container img:hover{
+    scale: 1.05;
+}
+
+@media (min-width: 780px) {
+    .saved-memes-container {
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .saved-memes-container img{
+        width: 230px;
+        height: 230px;
+    }
+}
+
+@media (min-width:1100px){
+    .saved-memes-container{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

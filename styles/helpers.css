@@ -1,0 +1,43 @@
+.grid{
+    display: grid;
+}
+
+.flex{
+    display: flex;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.display-none{
+    display: none;
+}
+
+.display-block{
+    display: block;
+}
+
+.row-one{
+    grid-row: 1
+}
+
+.row-two{
+    grid-row: 2;
+}
+
+.row-three{
+    grid-row: 3;
+}
+
+.row-four{
+    grid-row: 4;
+}

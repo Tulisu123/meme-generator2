@@ -1,0 +1,17 @@
+
+.main-layout{
+    display: grid;
+    grid-template-columns: 0.1fr 0.8fr 0.1fr;
+
+    justify-content: center;
+    align-content: center;
+    margin: 0;
+}
+
+.main-layout > *:not(.full){
+    grid-column: 2;
+}
+
+.main-layout > .full {
+    grid-column: 1 / -1;
+}

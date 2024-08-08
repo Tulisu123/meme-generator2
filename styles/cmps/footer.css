@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+}
+footer{
+    background-color: var(--header-footer-color);
+    font-family: comic-bold;
+    position: fixed;
+    bottom: 0;
+    height: 7vh;
+    width: 100%;
+}
+
+footer p {
+    justify-self: center;
+    font-size: 1.2em;
+}

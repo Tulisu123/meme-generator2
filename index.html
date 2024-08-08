@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/372b3b0995.js" crossorigin="anonymous"></script>
+</head>
+
+<body onload="onInit()" class="main-layout">
+    <header class="main-layout full">
+        <div class="header-content flex align-center space-between">
+            <div class="logo">Meme Magic</div>
+            <nav>
+                <a onclick="moveToGallery()" href="#">Gallery</a> <span class="seperate">|</span>
+                <a onclick="moveToSavedMemes()">Saved Memes</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="gallery">
+        <input class="search" type="text" placeholder="Search" oninput="onSearchKeyword(value)">
+        <section class="gallery-container grid">
+            <!-- Gallery content here -->
+        </section>
+    </section>
+
+    <section class="edit-meme display-none">
+        <section class="edit-view">
+            <div class="canvas-container">
+                <canvas></canvas>
+            </div>
+            <div class="actions">
+                <div class="row-one-container">
+                    <input class="input-text" type="text" placeholder="Enter Text" oninput="onTextInput(this.value)"
+                        value="Your text">
+                </div>
+                <div class="row-two-continer">
+                    <button class="plus fa-solid fa-plus" onclick="onAddLine()"></button>
+                    <button class="line-selector fa-duotone fa-solid fa-up-down"
+                        onclick="onChangeSelectedLine()"></button>
+                    <button class="trash fa-solid fa-trash" onclick="onDeleteLine()"></button>
+                </div>
+                <div class="row-three-container">
+                    <button class="a-plus" onclick="onIncreaseFont()">A+</button>
+                    <button class="a-minus" onclick="onDecreaseFont()">A-</button>
+                    <button class="text-left fa-solid fa-align-left" onclick="onAlignLeft()"></button>
+                    <button class="text-middle fa-solid fa-align-center" onclick="onAlignCenter()"></button>
+                    <button class="text-right fa-solid fa-align-right" onclick="onAlignRight()"></button>
+                    <br>
+                    <div class="row-three-point-five">
+                        <select id="selectbar" name="selectbar" onchange="onChangeFont(this)">
+                            <option value="impact">Impact</option>
+                            <option value="arial">Arial</option>
+                            <option value="times">Times new Roman</option>
+                        </select>
+                        <label for="colorInput" class="fa-solid fa-brush"></label>
+                        <input type="color" id="colorInput" class="color-input" oninput="onChangeLineColor(this.value)">
+                        <label for="fillInput" class="fa-solid fa-fill"></label>
+                        <input type="color" id="fillInput" class="color-input" oninput="onChangeFillColor(this.value)">
+                    </div>
+                </div>
+                <div class="row-four-container">
+                    <button class="save" onclick="onSaveMeme()">Save</button>
+                    <button class="share">Share</button>
+                    <button class="download">Download</button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section class="saved-meme display-none" onload="loadSavedMemes()">
+        <div class="saved-memes-container">
+
+            <!-- Saved memes here content here -->
+        </div>
+    </section>
+
+    <footer class="main-layout full">
+        <p>@Tal Peretz</p>
+    </footer>
+
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/gallery-controller.js"></script>
+    <script src="scripts/gallery-service.js"></script>
+    <script src="scripts/meme-controller.js"></script>
+    <script src="scripts/meme-service.js"></script>
+    <script src="scripts/saved-memes.js"></script>
+</body>
+
+</html>
