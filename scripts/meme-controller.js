@@ -272,46 +272,87 @@ function addListeners() {
 
 /////dragging impl
 function addDragListeners() {
-    gCanvas.addEventListener('mousedown', onMouseDown)
-    gCanvas.addEventListener('mousemove', onMouseMove)
-    gCanvas.addEventListener('mouseup', onMouseUp)
+    gCanvas.addEventListener('mousedown', onMouseDown);
+    gCanvas.addEventListener('mousemove', onMouseMove);
+    gCanvas.addEventListener('mouseup', onMouseUp);
+
+    gCanvas.addEventListener('touchstart', onTouchStart);
+    gCanvas.addEventListener('touchmove', onTouchMove);
+    gCanvas.addEventListener('touchend', onTouchEnd);
 }
 
 function onMouseDown(event) {
-    const gRect = gCanvas.getBoundingClientRect()
-
-    const mouseX = event.clientX - gRect.left
-    const mouseY = event.clientY - gRect.top
-
-    const selectedLineIdx = getLinePos(mouseX, mouseY)
+    const gRect = gCanvas.getBoundingClientRect();
+    const mouseX = event.clientX - gRect.left;
+    const mouseY = event.clientY - gRect.top;
+    const selectedLineIdx = getLinePos(mouseX, mouseY);
+    
     if (selectedLineIdx !== null) {
-        isDragging = true
-        let meme = getMeme()
-        meme.selectedLineIdx = selectedLineIdx
-        dragStartPos = { x: mouseX, y: mouseY }
-        selectedLinePos = { ...meme.lines[selectedLineIdx].pos } //creates a transparent variable 
+        isDragging = true;
+        let meme = getMeme();
+        meme.selectedLineIdx = selectedLineIdx;
+        dragStartPos = { x: mouseX, y: mouseY };
+        selectedLinePos = { ...meme.lines[selectedLineIdx].pos };
     }
 }
 
 function onMouseMove(event) {
-    if (!isDragging) return
+    if (!isDragging) return;
+    
+    const gRect = gCanvas.getBoundingClientRect();
+    const mouseX = event.clientX - gRect.left;
+    const mouseY = event.clientY - gRect.top;
+    const dx = mouseX - dragStartPos.x;
+    const dy = mouseY - dragStartPos.y;
 
-    const gRect = gCanvas.getBoundingClientRect()
+    let meme = getMeme();
+    const line = meme.lines[meme.selectedLineIdx];
+    line.pos.x = selectedLinePos.x + dx;
+    line.pos.y = selectedLinePos.y + dy;
 
-    const mouseX = event.clientX - gRect.left
-    const mouseY = event.clientY - gRect.top
-
-    const dx = mouseX - dragStartPos.x
-    const dy = mouseY - dragStartPos.y
-
-    let meme = getMeme()
-    const line = meme.lines[meme.selectedLineIdx]
-    line.pos.x = selectedLinePos.x + dx
-    line.pos.y = selectedLinePos.y + dy
-
-    renderMeme()
+    renderMeme();
 }
 
 function onMouseUp() {
-    isDragging = false
+    isDragging = false;
+}
+
+function onTouchStart(event) {
+    event.preventDefault(); // Prevents scrolling while dragging
+    const touch = event.touches[0];
+    const gRect = gCanvas.getBoundingClientRect();
+    const touchX = touch.clientX - gRect.left;
+    const touchY = touch.clientY - gRect.top;
+    const selectedLineIdx = getLinePos(touchX, touchY);
+    
+    if (selectedLineIdx !== null) {
+        isDragging = true;
+        let meme = getMeme();
+        meme.selectedLineIdx = selectedLineIdx;
+        dragStartPos = { x: touchX, y: touchY };
+        selectedLinePos = { ...meme.lines[selectedLineIdx].pos };
+    }
+}
+
+function onTouchMove(event) {
+    if (!isDragging) return;
+    
+    event.preventDefault(); // Prevents scrolling while dragging
+    const touch = event.touches[0];
+    const gRect = gCanvas.getBoundingClientRect();
+    const touchX = touch.clientX - gRect.left;
+    const touchY = touch.clientY - gRect.top;
+    const dx = touchX - dragStartPos.x;
+    const dy = touchY - dragStartPos.y;
+
+    let meme = getMeme();
+    const line = meme.lines[meme.selectedLineIdx];
+    line.pos.x = selectedLinePos.x + dx;
+    line.pos.y = selectedLinePos.y + dy;
+
+    renderMeme();
+}
+
+function onTouchEnd() {
+    isDragging = false;
 }
