@@ -27,7 +27,7 @@ function resizeCanvas() {
 function renderImage(imgSource) {
     const img = new Image()
     img.src = `${imgSource}`
-    
+
     gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width;
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
@@ -86,8 +86,8 @@ function onChangeSelectedLine() {
 
     let selectedLine = meme.lines[meme.selectedLineIdx]
 
-    markSelectedLine(selectedLine)
     renderMeme()
+    markSelectedLine(selectedLine)
 }
 
 function updateActions(line) {
@@ -95,11 +95,15 @@ function updateActions(line) {
 }
 
 function markSelectedLine(line) {
+    console.log('selectedLine', line)
     const fontSize = line.size;
     const txt = line.txt;
     const pos = { x: line.pos.x, y: line.pos.y };
 
+    gCtx.font = `${fontSize}px ${line.font}`;
+
     const textWidth = gCtx.measureText(txt).width;
+   
     const paddingX = 10;
     const paddingY = 10;
 
