@@ -99,6 +99,8 @@ function markSelectedLine(line) {
     const txt = line.txt;
     const pos = { x: line.pos.x, y: line.pos.y };
 
+    gCtx.font = `${fontSize}px ${line.font}`;
+    
     const textWidth = gCtx.measureText(txt).width;
     const paddingX = 10;
     const paddingY = 10;
