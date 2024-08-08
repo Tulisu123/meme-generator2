@@ -21,5 +21,6 @@ function saveMemeToLocalStorage() {
 }
 
 function loadMemeFromLocalStorage() {
+    console.log(JSON.parse(localStorage.getItem('meme')))
     return JSON.parse(localStorage.getItem('meme'))
 }
